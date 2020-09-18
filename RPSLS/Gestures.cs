@@ -6,22 +6,28 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
-
     class Gestures
     {
         //member Variables 
-        public List<string> gesters;
+        public List<string> gestures;
         //Constructor
         public Gestures()
         {
-            gesters = new List<string>();
-            gesters.Add("Rock");
-            gesters.Add("Paper");
-            gesters.Add("Scissors");
-            gesters.Add("Lizzard");
-            gesters.Add("Spock");
-
+            gestures = new List<string>() { "Rock", "Paper", "Scissors", "Lizzard", "Spock" };
         }
         //member methods
+
+
+        //Not sure why this not pullling 
+        public void DisplayMoves() 
+        {
+            int count = 1;
+            foreach (var item in gestures)
+            {
+                Console.WriteLine(count+ " "+ item);
+                count++;
+            }
+            
+        }
     }
 }

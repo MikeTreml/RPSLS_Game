@@ -6,7 +6,26 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
-    class Human
+    class Human : Player
     {
+
+        //member Variables 
+
+        //Constructor
+        public Human(string name) 
+            : base(name)
+        {
+                
+        }
+
+        public override int ChooseGesture()
+        {
+            Console.WriteLine(name + " please select you gester: ");
+            return int.Parse(Console.ReadLine());
+        }
+
+        //member methods
+       
+
     }
 }
