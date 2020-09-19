@@ -19,15 +19,16 @@ namespace RPSLS
 
 
         //Not sure why this not pullling 
-        public void DisplayMoves() 
+        public void DisplayMoves(string name)
         {
             int count = 1;
-            foreach (var item in gestures)
+            foreach (string item in gestures)
             {
-                Console.WriteLine(count+ " "+ item);
+                Console.WriteLine(count + " " + item);
                 count++;
             }
-            
+
         }
+        
     }
 }

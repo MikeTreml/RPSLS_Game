@@ -20,6 +20,7 @@ namespace RPSLS
        
         public override int ChooseGesture()
         {
+            random = new Random();
             Console.WriteLine(name + " please select you gester: ");
             return random.Next(1,5);
         }
