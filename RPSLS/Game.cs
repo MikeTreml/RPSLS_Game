@@ -14,12 +14,10 @@ namespace RPSLS
         Player player2;
         int roundTies;
 
-
         //Constructor
         public Game()
         {
         }
-
         //member methods
         public void RunGame()
         {
@@ -40,95 +38,94 @@ namespace RPSLS
                         break;
                 }
             } while (exit);
-
         }
         public void PlayGame()
         {
             roundTies = 0;
 
             CreatePlayers();
-            double winningPoint = Math.Floor((PickNumberOfRounds() / 2 + 1));
+            double bestOf = PickNumberOfRounds();
+            double winningNumber = Math.Floor((bestOf / 2 + 1));
             int round = 0;
-            while (player1.numberOfWins < winningPoint && player2.numberOfWins < winningPoint)
+            Console.WriteLine("Since you picked best of " + bestOf + " rounds. One player needs to win " + winningNumber + " rounds before the game is complete");
+            Console.WriteLine("\nany key to continue");
+            Console.ReadLine();
+            while (player1.numberOfWins < winningNumber && player2.numberOfWins < winningNumber)
             {
                 Console.Clear();
                 ScoreBoard(++round);
                 gestures.DisplayMoves();
                 DecideRoundWinner();
                 ScoreBoard(round);
+                WhoWon(winningNumber);
                 Console.WriteLine("\nany key to continue");
-                //Console.ReadLine();
+                Console.ReadLine();
             }
-            Console.Clear();
-            ScoreBoard(round);
-            WhoWon();
+
         }
 
         public void CreatePlayers()
         {
             string name;
             int typeOfPlayer;
-            Console.Write("Please enter name for player 1: ");
-            name = Console.ReadLine();
-            Console.WriteLine("Is " + name + " \n1. Human player or \n2 AI ");
-            typeOfPlayer = Human.InputVerification(1, 2, "Enter 1 for a human player, 2 for an AI: ");
-            switch (typeOfPlayer)
+            int count = 0;
+            for (int i = 0; i < 2; i++)
             {
-                case 1:
-                    player1 = new Human(name);
-                    break;
-                case 2:
-                    player1 = new AI(name);
-                    break;
+                Console.Write("Please enter name for player " + (i+1) + ": ");
+                name = Console.ReadLine();
+                Console.WriteLine("Is " + name + " \n1. Human player or \n2 AI ");
+                typeOfPlayer = Human.InputVerification(1, 2, "Enter 1 for a human player, 2 for an AI: ");
+                switch (typeOfPlayer + count)
+                {
+                    case 1:
+                        player1 = new Human(name);
+                        break;
+                    case 2:
+                        player1 = new AI(name);
+                        break;
+                    case 3:
+                        player2 = new Human(name);
+                        break;
+                    case 4:
+                        player2 = new AI(name);
+                        break;
+                }
+                count += 2;
             }
-            Console.Write("Please enter name for player 2: ");
-            name = Console.ReadLine();
-            Console.WriteLine("Is " + name + " \n1. a human player or \n2  an AI? ");
-            typeOfPlayer = Human.InputVerification(1, 2, "Enter 1 for a human player, 2 for an AI: ");
-            switch (typeOfPlayer)
-            {
-                case 1:
-                    player2 = new Human(name);
-                    break;
-                case 2:
-                    player2 = new AI(name);
-                    break;
-            }
+
         }
         
-                
-        
-
         public void DecideRoundWinner()
         {
             int concat = int.Parse(player1.ChooseGesture().ToString() + player2.ChooseGesture().ToString());
-            Console.WriteLine(gestures.gestureResponceDictionary[concat].statement);
-            this.player1.numberOfWins += gestures.gestureResponceDictionary[concat].player1Point;
-            this.player2.numberOfWins += gestures.gestureResponceDictionary[concat].player2Point;
-            roundTies += gestures.gestureResponceDictionary[concat].tiePoint;
+            Console.WriteLine(gestures.gestureResponseDictionary[concat].statement);
+            this.player1.numberOfWins += gestures.gestureResponseDictionary[concat].player1Point;
+            this.player2.numberOfWins += gestures.gestureResponseDictionary[concat].player2Point;
+            roundTies += gestures.gestureResponseDictionary[concat].tiePoint;
         }
 
         public double PickNumberOfRounds()
         {
             return Human.InputVerification(3, 100, "Please choose the number of rounds: ");
         }
-        public void WhoWon()
+        public void WhoWon(double winningNumber)
         {
             string winnerName;
-            if (player1.numberOfWins > player2.numberOfWins)
+            if (player1.numberOfWins >= winningNumber || player2.numberOfWins >= winningNumber)
             {
-                winnerName = player1.name;
+                if (player1.numberOfWins >= winningNumber)
+                {
+                    winnerName = player1.name;
+                }
+                else
+                {
+                    winnerName = player2.name;
+                }
+                Console.WriteLine("\n*** Winner ***");
+                Console.WriteLine("-------------------\n");
+                Console.WriteLine(winnerName + " won this game.");
+                Console.WriteLine("\n-------------------");
             }
-            else
-            {
-                winnerName = player2.name;
-            }
-
-            Console.WriteLine("\n*** Winner ***");
-            Console.WriteLine("-------------------\n");
-            Console.WriteLine(winnerName + " won this game.");
-            Console.WriteLine("\n-------------------");
-            Console.ReadLine();
         }
         public int Menu()
         {
@@ -158,7 +155,6 @@ namespace RPSLS
             Console.WriteLine("Rock crushes Scissors");
             Console.WriteLine("\nPress any key to go back to the main menu.");
             Console.ReadLine();
-
         }
         public void ScoreBoard(int round)
         {

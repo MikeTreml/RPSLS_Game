@@ -21,7 +21,8 @@ namespace RPSLS
        
         public override int ChooseGesture()
         {
-            Thread.Sleep(452);
+            //thread.sleep was set to prevent AI vs AI to always tie.
+            Thread.Sleep(18);
             int c;
             random = new Random();
             c = random.Next(1, 5);

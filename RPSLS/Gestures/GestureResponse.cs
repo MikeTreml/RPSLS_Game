@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
-    class GesterResponce
+    class GestureResponse
     {
         //member Variables 
         public string statement;
@@ -14,7 +14,7 @@ namespace RPSLS
         public int player2Point;
         public int tiePoint;
         //Constructor
-        public GesterResponce(string statement, int player1Point, int player2Point, int tiePoint)
+        public GestureResponse(string statement, int player1Point, int player2Point, int tiePoint)
         {
             this.statement = statement;
             this.player1Point = player1Point;

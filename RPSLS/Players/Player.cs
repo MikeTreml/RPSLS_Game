@@ -10,15 +10,13 @@ namespace RPSLS
     {
         //member Variables 
         public string name;
-        public int move;
         public int numberOfWins;
         
         //Constructor
         public Player(string name)
         {
             this.name = name;
-            int move;
-            int numberOfWins = 0;
+            this.numberOfWins = 0;
             
         }
         //member methods
