@@ -63,17 +63,6 @@ namespace RPSLS
             }
 
         }
-        public string RoundWinner(int move)
-        {
-            IDictionary<int, string> gestureResponce = new Dictionary<int, string>();
-
-            string statement = "";
-            switch (move)
-            {
-
-            }
-            return statement;
-
-        }
+       
     }
 }

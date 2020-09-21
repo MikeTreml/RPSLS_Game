@@ -34,7 +34,7 @@ namespace RPSLS
                 {
                     if (g >= min && g <= max)
                         return (g);
-                    Console.WriteLine("You entered " + g + ", but choices are (" + min + " - " + max + ". Please try again...");
+                    Console.WriteLine("You entered " + g + ", but your choices are (" + min + " - " + max + ". Please try again...");
                 }
                 else
                     Console.WriteLine("That is not a real number. Please try again...");

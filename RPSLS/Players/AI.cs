@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RPSLS
@@ -19,7 +20,8 @@ namespace RPSLS
         //member methods
        
         public override int ChooseGesture()
-        { 
+        {
+            Thread.Sleep(452);
             int c;
             random = new Random();
             c = random.Next(1, 5);
