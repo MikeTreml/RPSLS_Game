@@ -19,10 +19,13 @@ namespace RPSLS
         //member methods
        
         public override int ChooseGesture()
-        {
+        { 
+            int c;
             random = new Random();
-            Console.WriteLine(name + " please select you gester: ");
-            return random.Next(1,5);
+            c = random.Next(1, 5);
+            Console.WriteLine(name + " please select you gester: "+c);
+            
+            return c;
         }
     }
 }

@@ -20,12 +20,26 @@ namespace RPSLS
 
         public override int ChooseGesture()
         {
-            Console.WriteLine(name + " please select you gester: ");
-            return int.Parse(Console.ReadLine());
+            return InputVerification(1, 5, name + " please select you gester: ");
         }
 
         //member methods
-       
+        public static int InputVerification(int min, int max, string prompt)
+        {
+            int g;
+            Console.Write(prompt);
+            do
+            {
+                if (int.TryParse(Console.ReadLine(), out g))
+                {
+                    if (g >= min && g <= max)
+                        return (g);
+                    Console.WriteLine("You entered " + g + ", but choices are (" + min + " - " + max + ". Please try again...");
+                }
+                else
+                    Console.WriteLine("That is not a real number. Please try again...");
+            } while (true);
+        }
 
     }
 }
